@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineBook</title>
+    <meta name="description"
+        content="Book your movie tickets instantly. Select your seats, choose your showtime, and enjoy the ultimate cinema experience.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style_updates.css">
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <section class="hero" id="heroSection">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="cinema-logo">
+                <div class="logo-icon">🎬</div>
+                <h1 class="logo-text">CineBook</h1>
+            </div>
+
+            <h2 class="hero-title">AAVAAZ College Union Presents</h2>
+            <p class="hero-subtitle">MMC Film Fest</p>
+
+            <div class="movie-info-card">
+                <div class="movie-banner">
+                    <img src="photo_2026-02-04_16-15-43.jpg" alt="Featured Movie" id="movieBanner">
+                    <div class="banner-overlay">
+                        <!-- <div class="rating">
+                            <span class="star">★</span>
+                            <span class="rating-value">8.9</span>
+                        </div> -->
+                    </div>
+                </div>
+
+                <div class="showtime-info">
+                    <div class="info-row">
+                        <div class="info-item">
+                            <span class="info-label">Date</span>
+                            <span class="info-value" id="currentDate"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Time</span>
+                            <span class="info-value" id="currentTime"></span>
+                        </div>
+                    </div>
+
+                    <!-- <div class="showtime-selector">
+                        <label for="showtimeSelect">Select Showtime</label>
+                        <select id="showtimeSelect" class="showtime-select">
+                            <option value="10:00 AM">10:00 AM - Morning Show</option>
+                            <option value="1:30 PM">1:30 PM - Matinee</option>
+                            <option value="4:45 PM">4:45 PM - Evening Show</option>
+                            <option value="7:30 PM" selected>7:30 PM - Prime Time</option>
+                            <option value="10:15 PM">10:15 PM - Night Show</option>
+                        </select>
+                    </div> -->
+                </div>
+            </div>
+
+            <button class="cta-button" id="bookNowBtn">
+                <span class="button-text">Book Now</span>
+                <span class="button-icon">→</span>
+            </button>
+        </div>
+
+        <div class="hero-decoration">
+            <div class="decoration-circle circle-1"></div>
+            <div class="decoration-circle circle-2"></div>
+            <div class="decoration-circle circle-3"></div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking-section" id="bookingSection">
+        <div class="booking-container">
+            <button class="back-button" id="backBtn">
+                <span>←</span> Back to Home
+            </button>
+
+            <div class="section-header">
+                <h2 class="section-title">Choose Your Seats</h2>
+                <p class="section-subtitle">Select your preferred seats from the interactive seating chart</p>
+            </div>
+
+            <!-- Screen -->
+            <div class="screen-container">
+                <div class="screen">
+                    <span>SCREEN</span>
+                </div>
+            </div>
+
+            <!-- Seat Legend -->
+            <div class="seat-legend">
+                <div class="legend-item">
+                    <div class="seat available"></div>
+                    <span>Available</span>
+                </div>
+                <div class="legend-item">
+                    <div class="seat selected"></div>
+                    <span>Selected</span>
+                </div>
+                <div class="legend-item">
+                    <div class="seat occupied"></div>
+                    <span>Occupied</span>
+                </div>
+            </div>
+
+            <!-- Seating Chart -->
+            <div class="seating-chart" id="seatingChart">
+                <!-- Seats will be generated by JavaScript -->
+            </div>
+
+            <!-- Selection Summary -->
+            <div class="selection-summary" id="selectionSummary">
+                <div class="summary-item">
+                    <span class="summary-label">Selected Seats:</span>
+                    <span class="summary-value" id="selectedSeatsDisplay">None</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Total Seats:</span>
+                    <span class="summary-value" id="totalSeatsCount">0</span>
+                </div>
+            </div>
+
+            <!-- Booking Form -->
+            <div class="booking-form-container">
+                <h3 class="form-title">Complete Your Booking</h3>
+
+                <form id="bookingForm" class="booking-form">
+                    <div class="form-group">
+                        <label for="customerName">Full Name</label>
+                        <input type="text" id="customerName" name="customerName" required
+                            placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="department">Department</label>
+                        <input type="text" id="department" name="department" required
+                            placeholder="Enter your department">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="numberOfSeats">Number of Seats</label>
+                        <input type="number" id="numberOfSeats" name="numberOfSeats" min="1" max="5" required readonly
+                            placeholder="Select seats above">
+                        <small class="form-hint">This will match your seat selection</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter 10-digit number"
+                            pattern="[0-9]{10}" maxlength="10" required>
+                        <small class="form-hint">Format: 10 digits</small>
+                    </div>
+
+                    <button type="submit" class="submit-button" id="confirmBookingBtn">
+                        <span class="button-content">
+                            <span class="button-text">Confirm Booking</span>
+                            <span class="button-icon">✓</span>
+                        </span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>&copy; IT Club MMC</p>
+    </footer>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="success-icon">
+                <div class="success-circle">
+                    <div class="checkmark">✓</div>
+                </div>
+            </div>
+            <h2 class="modal-title">Booking Confirmed!</h2>
+            <p class="modal-message">Your seats have been successfully reserved.</p>
+            <div class="booking-details" id="bookingDetails"></div>
+            <button class="modal-button" id="closeModalBtn">Done</button>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <p>Processing your booking...</p>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

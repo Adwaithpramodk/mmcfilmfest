@@ -1,0 +1,33 @@
+# Ignore Firebase config with real credentials (if you create a separate config file)
+firebase-config.js
+
+# Node modules (if you add any build tools later)
+node_modules/
+package-lock.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build outputs (if you add build process)
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+
+# Temporary files
+*.tmp
+*.temp

@@ -1,0 +1,211 @@
+/* =========================================
+   LEGEND & SEAT DESIGN OVERRIDES
+   ========================================= */
+
+/* 1. AVAILABLE SEAT DESIGN */
+html body .seat.available {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    transition: all 0.3s ease !important;
+}
+
+html body .seat.available:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: #fff !important;
+    color: #fff !important;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* 2. SELECTED SEAT DESIGN - PRIMARY PURPLE */
+html body .seat.selected {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    border: 2px solid #a78bfa !important;
+    box-shadow: 0 0 15px rgba(118, 75, 162, 0.6) !important;
+    color: #fff !important;
+    transform: scale(1.1);
+    animation: selectedPulse 1.5s infinite alternate;
+}
+
+@keyframes selectedPulse {
+    from {
+        box-shadow: 0 0 10px rgba(118, 75, 162, 0.6);
+    }
+
+    to {
+        box-shadow: 0 0 20px rgba(118, 75, 162, 0.9);
+    }
+}
+
+/* 3. OCCUPIED SEAT DESIGN - VIVID RED */
+html body .seat.occupied {
+    background-color: #dc2626 !important;
+    /* Solid Vivid Red */
+    border: 2px solid #ef4444 !important;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5) !important;
+    opacity: 1 !important;
+    position: relative !important;
+    cursor: not-allowed !important;
+}
+
+/* The 'X' Mark */
+html body .seat.occupied::after {
+    content: '✕' !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    font-family: sans-serif !important;
+    font-size: 1.2rem !important;
+    font-weight: 900 !important;
+    color: #ffffff !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 10 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* =========================================
+   LEGEND SPECIFIC STYLES
+   ========================================= */
+.seat-legend {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 2rem;
+}
+
+.legend-item span {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.5px;
+}
+
+.legend-item .seat {
+    width: 32px !important;
+    /* Larger to showcase design */
+    height: 32px !important;
+    font-size: 0 !important;
+}
+
+.legend-item .seat.occupied::after {
+    font-size: 1rem !important;
+    /* Larger X for visibility */
+}
+
+/* =========================================
+   BUTTON STYLES (NEW)
+   ========================================= */
+/* Common CTA Button Styles */
+html body .cta-button,
+html body .submit-button,
+html body button[type="submit"] {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    border: none !important;
+    border-radius: 50px !important;
+    /* Pill shape */
+    color: white !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
+    text-transform: uppercase !important;
+    padding: 1rem 2.5rem !important;
+    box-shadow: 0 4px 15px rgba(118, 75, 162, 0.4) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    cursor: pointer !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Shine effect on hover */
+html body .cta-button::after,
+html body .submit-button::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent) !important;
+    transition: 0.5s !important;
+}
+
+html body .cta-button:hover::after,
+html body .submit-button:hover::after {
+    left: 100% !important;
+}
+
+html body .cta-button:hover,
+html body .submit-button:hover {
+    transform: translateY(-2px) scale(1.02) !important;
+    box-shadow: 0 8px 25px rgba(118, 75, 162, 0.6) !important;
+}
+
+html body .cta-button:active,
+html body .submit-button:active {
+    transform: translateY(0) scale(0.98) !important;
+}
+
+/* Back Button - Glass Style */
+html body .back-button {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    border-radius: 50px !important;
+    padding: 0.8rem 1.5rem !important;
+    font-size: 0.9rem !important;
+    backdrop-filter: blur(10px) !important;
+    transition: all 0.3s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+}
+
+html body .back-button:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    transform: translateX(-5px) !important;
+    /* Slide left indication */
+}
+
+/* =========================================
+   UTILITIES
+   ========================================= */
+.seating-chart.loading {
+    opacity: 0.5;
+    pointer-events: none;
+    position: relative;
+    min-height: 200px;
+}
+
+.seating-chart.loading::after {
+    content: 'Loading availability...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.site-footer {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.site-footer p {
+    margin: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+}
