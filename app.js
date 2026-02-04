@@ -71,7 +71,7 @@ function setStaticTime() {
     elements.currentDate.textContent = formattedDate;
 
     // Set static time (showtime)
-    const showtime = '2:00 PM';
+    const showtime = '3:00 PM';
     elements.currentTime.textContent = showtime;
 }
 

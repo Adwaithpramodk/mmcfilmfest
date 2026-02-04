@@ -220,3 +220,58 @@ html body .back-button:hover {
         grid-template-columns: 1fr !important;
     }
 }
+
+/* =========================================
+   RESPONSIVE CONFIRMATION MODAL
+   ========================================= */
+@media (max-width: 480px) {
+    .modal {
+        align-items: center;
+        padding: 1rem;
+    }
+
+    .modal-content {
+        padding: 1.5rem;
+        width: 100%;
+        max-height: 85vh;
+        overflow-y: auto;
+        border-radius: 1.5rem;
+    }
+
+    .success-icon {
+        margin-bottom: 1.5rem;
+    }
+
+    .success-circle {
+        width: 80px;
+        height: 80px;
+    }
+
+    .checkmark {
+        font-size: 2.5rem;
+    }
+
+    .modal-title {
+        font-size: 1.5rem;
+    }
+
+    .modal-message {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .booking-details {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .detail-row {
+        padding: 0.4rem 0;
+        font-size: 0.9rem;
+    }
+
+    .modal-button {
+        width: 100%;
+        padding: 0.9rem;
+    }
+}
