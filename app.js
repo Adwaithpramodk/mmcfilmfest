@@ -247,6 +247,7 @@ function getShowDocId() {
 // ==========================================
 function showBookingSection() {
     elements.heroSection.style.display = 'none';
+    elements.bookingSection.style.display = ''; // Clear inline style from previous close
     elements.bookingSection.classList.add('active');
     window.scrollTo(0, 0);
 }
