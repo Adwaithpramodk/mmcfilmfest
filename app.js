@@ -358,6 +358,8 @@ async function handleBookingSubmit(e) {
 // SUCCESS MODAL
 // ==========================================
 function showSuccessModal(bookingData) {
+    const totalAmount = bookingData.seats.length * 20;
+
     elements.bookingDetails.innerHTML = `
         <div class="detail-row" style="text-align: center; margin-bottom: 1rem; color: var(--accent-color); font-weight: bold;">
             Please take a screenshot of this pass to enter the film fest! 📸
@@ -385,6 +387,10 @@ function showSuccessModal(bookingData) {
         <div class="detail-row">
             <span class="detail-label">Date:</span>
             <span class="detail-value">${bookingData.date}</span>
+        </div>
+        <div class="detail-row" style="margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 0.5rem;">
+            <span class="detail-label" style="font-size: 1.1em; color: var(--accent-color);">Total Amount:</span>
+            <span class="detail-value" style="font-size: 1.1em; font-weight: bold; color: var(--accent-color);">₹${totalAmount}</span>
         </div>
     `;
 

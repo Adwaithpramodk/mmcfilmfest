@@ -209,3 +209,14 @@ html body .back-button:hover {
     font-size: 0.9rem;
     letter-spacing: 0.05em;
 }
+
+/* Update info-row to 3 columns for Rate addition */
+.info-row {
+    grid-template-columns: repeat(3, 1fr) !important;
+}
+
+@media (max-width: 768px) {
+    .info-row {
+        grid-template-columns: 1fr !important;
+    }
+}
