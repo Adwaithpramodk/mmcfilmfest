@@ -221,6 +221,41 @@ html body .back-button:hover {
     }
 }
 
+/* Global Modal Improvements */
+.modal-content {
+    max-height: 85vh;
+    overflow-y: auto;
+    border-radius: 1.5rem;
+    max-width: 700px !important;
+    /* Wider on large screens */
+}
+
+
+/* Large Screen Specifics */
+@media (min-width: 769px) {
+    .modal-title {
+        font-size: 2.5rem;
+    }
+
+    .modal-message {
+        font-size: 1.2rem;
+    }
+
+    .detail-label,
+    .detail-value {
+        font-size: 1.1rem;
+    }
+
+    .checkmark {
+        font-size: 4rem;
+    }
+
+    .success-circle {
+        width: 120px;
+        height: 120px;
+    }
+}
+
 /* =========================================
    RESPONSIVE CONFIRMATION MODAL
    ========================================= */
@@ -233,9 +268,7 @@ html body .back-button:hover {
     .modal-content {
         padding: 1.5rem;
         width: 100%;
-        max-height: 85vh;
-        overflow-y: auto;
-        border-radius: 1.5rem;
+        /* max-height and overflow inherited from global */
     }
 
     .success-icon {
